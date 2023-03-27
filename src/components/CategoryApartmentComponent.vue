@@ -44,7 +44,7 @@ export default {
                     console.log(this.currentPage);
                     this.loading = true;
                     if (this.categories !== null && this.categories.length > 0) {
-                        axios.get('http://127.0.0.1:8000/api/apartments?category=' + this.categories + `&page=${this.currentPage}`)
+                        axios.get('https://boolbnb-host.com/api/apartments?category=' + this.categories + `&page=${this.currentPage}`)
                             .then(response => {
                                 store.results = response.data.results.data
                                 //this.apartments = response.data.results.data;
@@ -63,7 +63,7 @@ export default {
                                 this.loading = false;
                             });
                     } else {
-                        axios.get(`http://127.0.0.1:8000/api/apartments?page=${this.currentPage}`)
+                        axios.get(`https://boolbnb-host.com/api/apartments?page=${this.currentPage}`)
                             .then(response => {
                                 store.results = response.data.results.data
                                 //this.apartments = response.data.results.data;
@@ -97,7 +97,7 @@ export default {
                     console.log(this.currentPage);
                     this.loading = true;
                     if (this.categories !== null && this.categories.length > 0) {
-                        axios.get('http://127.0.0.1:8000/api/apartments?category=' + this.categories + `&page=${this.currentPage}`)
+                        axios.get('https://boolbnb-host.com/api/apartments?category=' + this.categories + `&page=${this.currentPage}`)
                             .then(response => {
                                 store.results = response.data.results.data
                                 //this.apartments = response.data.results.data;
@@ -117,7 +117,7 @@ export default {
                             });
 
                     } else {
-                        axios.get(`http://127.0.0.1:8000/api/apartments?page=${this.currentPage}`)
+                        axios.get(`https://boolbnb-host.com/api/apartments?page=${this.currentPage}`)
                             .then(response => {
                                 store.results = response.data.results.data
                                 //this.apartments = response.data.results.data;
@@ -147,7 +147,7 @@ export default {
                 this.currentPage = pageNumber;
                 this.loading = true;
                 if (this.categories !== null && this.categories.length > 0) {
-                    axios.get('http://127.0.0.1:8000/api/apartments?category=' + this.categories + `&page=${this.currentPage}`)
+                    axios.get('https://boolbnb-host.com/api/apartments?category=' + this.categories + `&page=${this.currentPage}`)
                         .then(response => {
                             //this.apartments = response.data.results.data;
                             store.results = response.data.results.data
@@ -167,7 +167,7 @@ export default {
                             this.loading = false;
                         })
                 } else {
-                    axios.get(`http://127.0.0.1:8000/api/apartments?page=${this.currentPage}`)
+                    axios.get(`https://boolbnb-host.com/api/apartments?page=${this.currentPage}`)
                         .then(response => {
                             //this.apartments = response.data.results.data;
                             store.results = response.data.results.data
@@ -202,7 +202,7 @@ export default {
             this.activeCategoryIndex = null
 
             // Rimuovi la classe "active_category" da tutti gli elementi
-            axios.get(`http://127.0.0.1:8000/api/apartments`)
+            axios.get(`https://boolbnb-host.com/api/apartments`)
                 .then(response => {
                     store.results = response.data.results.data
                     //this.apartments = response.data.results.data;
@@ -229,7 +229,7 @@ export default {
             store.radius = 20;
             store.beds = '';
             this.loading = true;
-            axios.get(`http://127.0.0.1:8000/api/search`)
+            axios.get(`https://boolbnb-host.com/api/search`)
                 .then(response => {
                     this.apartments = response.data.results;
                     // this.pages = Math.ceil(this.apartments.length / this.perPage);
@@ -290,7 +290,7 @@ export default {
             try {
                 this.loading = true;
                 //console.log(this.categories);
-                axios.get('http://127.0.0.1:8000/api/apartments?category=' + this.categories)
+                axios.get('https://boolbnb-host.com/api/apartments?category=' + this.categories)
                     .then(response => {
                         //console.log(resp);
                         // convertire km to metri prima di mandarli 
@@ -325,7 +325,7 @@ export default {
     },
     mounted() {
         this.loading = true;
-        axios.get('http://127.0.0.1:8000/api/categories')
+        axios.get('https://boolbnb-host.com/api/categories')
             .then(response => {
                 //console.log(response);
                 store.categories = response.data.results;

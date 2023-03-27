@@ -39,7 +39,7 @@ export default {
                 if (this.currentPage > 1) {
                     this.currentPage--;
                     console.log(this.currentPage);
-                    axios.get(`http://127.0.0.1:8000/api/search?page=${this.currentPage}`)
+                    axios.get(`https://boolbnb-host.com/api/search?page=${this.currentPage}`)
                         .then(response => {
                             store.results = response.data.results.data;
                             this.nextPageUrl = response.data.results.next_page_url;
@@ -57,7 +57,7 @@ export default {
                 if (this.currentPage > 0 && this.currentPage < store.pages) {
                     this.currentPage++;
 
-                    axios.get(`http://127.0.0.1:8000/api/search?page=${this.currentPage}`)
+                    axios.get(`https://boolbnb-host.com/api/search?page=${this.currentPage}`)
                         .then(response => {
                             store.results = response.data.results.data;
                             this.nextPageUrl = response.data.results.next_page_url;

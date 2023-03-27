@@ -63,8 +63,8 @@ export default {
                 </div>
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="http://127.0.0.1:8000/">Accedi</a></li>
-                <li><a class="dropdown-item" href="http://127.0.0.1:8000/register">Registrati</a></li>
+                <li><a class="dropdown-item" href="https://boolbnb-host.com/">Accedi</a></li>
+                <li><a class="dropdown-item" href="https://boolbnb-host.com/register">Registrati</a></li>
             </ul>
         </div>
     </nav>
@@ -76,7 +76,7 @@ export default {
 
             <div class="nav_icon">
                 <i class="fa-solid fa-user"></i>
-                <span><a href="http://127.0.0.1:8000/">Accedi</a></span>
+                <span><a href="https://boolbnb-host.com/">Accedi</a></span>
             </div>
 
 
@@ -88,7 +88,7 @@ export default {
 
             <div class="nav_icon">
                 <i class="fa-solid fa-pen"></i>
-                <span><a href="http://127.0.0.1:8000/register">Registrati</a></span>
+                <span><a href="https://boolbnb-host.com/register">Registrati</a></span>
             </div>
 
         </div>

@@ -71,7 +71,7 @@ export default {
                 body: this.body,
                 apartment_id: this.apartment_id,
             }
-            const urlMessage = 'http://127.0.0.1:8000/api/messages'
+            const urlMessage = 'https://boolbnb-host.com/api/messages'
             axios.post(urlMessage, data)
                 .then(resp => {
                     console.log(resp);
@@ -129,7 +129,7 @@ export default {
         async getApartment() {
             try {
                 this.loading = true;
-                const url = 'http://127.0.0.1:8000/api/apartments/' + this.$route.params.slug;
+                const url = 'https://boolbnb-host.com/api/apartments/' + this.$route.params.slug;
                 const response = await axios.get(url);
                 if (response.data.success) {
                     this.apartment = response.data.results;
@@ -158,7 +158,7 @@ export default {
                 const date = new Date();
                 const todaysDate = date.toLocaleDateString('en-US');
                 //console.log(todaysDate);
-                const url = 'http://127.0.0.1:8000/api/views'
+                const url = 'https://boolbnb-host.com/api/views'
                 const data = { apartment_id: this.apartment_id, ip_address: this.userIP, date: todaysDate }
                 const response = await axios.post(url, data);
                 //console.log(response);
@@ -390,7 +390,7 @@ export default {
                                 <label for="" class="form-label">Messaggio*</label>
                                 <textarea rows="3" cols="50" name="body" id="body" class="form-control" placeholder=""
                                     aria-describedby="helpId" required v-model="body">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </textarea>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </textarea>
 
                                 <div class="alert alert-danger" role="alert" v-for="error in errors.body">
                                     {{ error }}

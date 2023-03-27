@@ -68,22 +68,12 @@ export default {
 
         async searchApi(destination) {
             try {
-                /*   const response = await axios.get('http://127.0.0.1:8000/api/search?address=' + destination + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds);
-                  //store.results = response.data.results.data*/
+
                 const searchQuery = destination;
                 store.address = searchQuery;
                 const query = searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : '';
                 this.$router.push({ name: 'search', path: '/search' + query, query: { q: searchQuery } })
-                /* store.results = response.data.results
-                store.loading = false;
-                console.log(store.results);
-                console.log(response.data.results);
-                console.log(response.data);
-                console.log(this.displayedDestinations);
-                console.log(destination); */
-                //console.log('http://127.0.0.1:8000/api/search?address=' + destination + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds);
 
-                // Reindirizza l'utente alla pagina /search
 
 
             } catch (error) {
@@ -91,47 +81,6 @@ export default {
             }
         },
 
-
-        // async testApi (){
-        //     try {
-        //         //console.log('http://127.0.0.1:8000/api/search?address=' + store.address + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds)
-        //         const response = await axios.get('http://127.0.0.1:8000/api/search?address=' + 'Roma' + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds);
-        //         console.log(response);
-
-        //         store.results = response.data.results;
-
-
-        //         if (response.data.poi !== null) {
-        //             store.lat = response.data.poi.lat;
-        //             store.lon = response.data.poi.lon;
-        //         }
-
-        //         store.loading = false;
-
-        //         const searchQuery = store.address;
-        //         const query = searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : '';
-        //         this.$router.push({ name: 'search', path: '/search' + query, query: { q: searchQuery } });
-        //         /*
-        //         const mapHiddenEmptyAddress = document.querySelector('.col.hide_map_custom');
-        //         const map = document.querySelector('.hide_map_custom #map')
-        //         if (store.address.length == 0 || store.address == null) {
-        //             console.log(store.address);
-        //             mapHiddenEmptyAddress.classList.add('d-none')
-        //             map.classList.add('map_hidden')
-
-        //         }
-        //         if (store.address.length > 0) {
-        //             mapHiddenEmptyAddress.classList.remove('d-none')
-        //             map.classList.remove('map_hidden');
-        //             console.log(map);
-
-        //         }
-        //         */
-
-        //     } catch (error) {
-        //         console.error(error);
-        //     }
-        // },
 
         scroll(direction) {
             if (window.innerWidth < 768) { // se larghezza dello schermo è inferiore a 768px (media query per i dispositivi mobili)

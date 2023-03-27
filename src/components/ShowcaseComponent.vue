@@ -38,7 +38,7 @@ export default {
                     this.loading = true;
                     this.currentPage--;
                     console.log(this.currentPage);
-                    axios.get(`http://127.0.0.1:8000/api/showcase?page=${this.currentPage}`)
+                    axios.get(`https://boolbnb-host.com/api/showcase?page=${this.currentPage}`)
                         .then(response => {
                             this.apartments = response.data.results.data;
                             this.nextPageUrl = response.data.results.next_page_url;
@@ -64,7 +64,7 @@ export default {
                     this.loading = true;
                     this.currentPage++;
                     console.log(this.currentPage);
-                    axios.get(`http://127.0.0.1:8000/api/showcase?page=${this.currentPage}`)
+                    axios.get(`https://boolbnb-host.com/api/showcase?page=${this.currentPage}`)
                         .then(response => {
                             this.apartments = response.data.results.data;
                             this.nextPageUrl = response.data.results.next_page_url;
@@ -94,7 +94,7 @@ export default {
         },
         callApiPage(pageNumber) {
             this.loading = true;
-            axios.get(`http://127.0.0.1:8000/api/showcase?page=` + pageNumber)
+            axios.get(`https://boolbnb-host.com/api/showcase?page=` + pageNumber)
                 .then(response => {
                     this.apartments = response.data.results.data;
                     this.pages = response.data.results.last_page;
@@ -116,7 +116,7 @@ export default {
         },
         callApi() {
             this.loading = true;
-            axios.get(`http://127.0.0.1:8000/api/showcase`)
+            axios.get(`https://boolbnb-host.com/api/showcase`)
                 .then(response => {
                     this.apartments = response.data.results.data;
                     this.pages = response.data.results.last_page;
@@ -140,7 +140,7 @@ export default {
             store.radius = 20;
             store.beds = '';
             this.loading = true;
-            axios.get(`http://127.0.0.1:8000/api/search`)
+            axios.get(`https://boolbnb-host.com/api/search`)
                 .then(response => {
                     this.apartments = response.data.results;
                     // this.pages = response.data.results.last_page;
