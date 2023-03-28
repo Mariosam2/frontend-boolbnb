@@ -161,7 +161,7 @@ export default {
                 store.servicesIndex.push(i);
                 element.classList.add('active');
                 console.log(store.services_back);
-                //console.log('http://127.0.0.1:8000/api/search?address=' + '' + '&services=' + store.services_back + '&category=' + '');
+                //console.log('https://boolbnb-host.com/api/search?address=' + '' + '&services=' + store.services_back + '&category=' + '');
             } else {
                 let elementToRemove = store.services[i].id;
                 let index = store.services_back.indexOf(elementToRemove);
@@ -170,7 +170,7 @@ export default {
                 }
                 store.servicesIndex.splice(index, 1);
                 element.classList.remove('active');
-                //console.log('http://127.0.0.1:8000/api/search?address=' + '' + '&services=' + store.services_back + '&category=' + '');
+                //console.log('https://boolbnb-host.com/api/search?address=' + '' + '&services=' + store.services_back + '&category=' + '');
             }
             //console.log(store.services_back);
         },
@@ -181,7 +181,7 @@ export default {
                 store.loading = true;
                 store.isAdvancedSearchViewLoaded = false;
                 //console.log(store.radius * 1000);
-                axios.get('http://127.0.0.1:8000/api/search?address=' + store.address + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds)
+                axios.get('https://boolbnb-host.com/api/search?address=' + store.address + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds)
                     .then(response => {
                         //console.log(resp);
                         // convertire km to metri prima di mandarli 
@@ -421,7 +421,7 @@ export default {
             filterPopup.classList.toggle('open');
         });
 
-        axios.get('http://127.0.0.1:8000/api/services')
+        axios.get('https://boolbnb-host.com/api/services')
             .then(response => {
                 //console.log(response);
                 store.services = response.data.results
@@ -431,7 +431,7 @@ export default {
                 console.log(err);
             })
 
-        axios.get('http://127.0.0.1:8000/api/categories')
+        axios.get('https://boolbnb-host.com/api/categories')
             .then(response => {
                 //console.log(response);
                 store.categories = response.data.results
