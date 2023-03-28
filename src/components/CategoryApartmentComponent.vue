@@ -378,7 +378,7 @@ export default {
                                 <div class="category"
                                     :class="[i === activeCategoryIndex ? 'active_category' : '', loading ? 'loading' : '']"
                                     @click.stop="PushCategory(i)" :id="'category-' + i">
-                                    <img :src="getImagePath(`${category.img}.png`)" alt="">
+                                    <img :src="`/${category.img}.png`" alt="">
                                     <div>
                                         {{ category.name }}
                                     </div>
