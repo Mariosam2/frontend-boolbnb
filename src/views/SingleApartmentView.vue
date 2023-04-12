@@ -390,7 +390,7 @@ export default {
                                 <label for="" class="form-label">Messaggio*</label>
                                 <textarea rows="3" cols="50" name="body" id="body" class="form-control" placeholder=""
                                     aria-describedby="helpId" required v-model="body">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </textarea>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </textarea>
 
                                 <div class="alert alert-danger" role="alert" v-for="error in errors.body">
                                     {{ error }}
@@ -424,66 +424,6 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables.scss' as *;
 
-//loader 
-
-
-.preloader {
-    position: absolute;
-    width: 102px;
-    height: 102px;
-    left: 50%;
-    top: 50%;
-    min-height: 102px;
-    transform: translateX(-50%) translateY(-50%);
-
-    svg {
-        width: 102px;
-        height: 102px;
-
-
-    }
-
-}
-
-.preloader .small-circle {
-    stroke-dasharray: 210;
-    stroke-dashoffset: 210;
-    stroke: $bb-secondary;
-    transform-origin: 50%;
-    animation: 1s draw-small infinite alternate;
-}
-
-@keyframes draw-big {
-    0% {
-        stroke-dashoffset: 0;
-        transform: rotateY(180deg) rotate(360deg);
-    }
-
-    100% {
-        stroke-dashoffset: 240;
-        transform: rotateY(180deg) rotate(0deg);
-    }
-}
-
-@keyframes draw-small {
-    0% {
-        stroke-dashoffset: 0;
-        transform: rotate(0deg);
-    }
-
-    100% {
-        stroke-dashoffset: 210;
-        transform: rotate(360deg);
-    }
-}
-
-.preloader .big-circle {
-    stroke-dasharray: 240;
-    stroke-dashoffset: 240;
-    transform-origin: 50%;
-    stroke: $bb-primary;
-    animation: 1s draw-big infinite alternate 0.5s;
-}
 
 
 
