@@ -131,6 +131,7 @@ export default {
 
             } catch (error) {
                 console.error(error);
+                console.error(error.message);
             }
         },
         getImagePath: function (imgPath) {
