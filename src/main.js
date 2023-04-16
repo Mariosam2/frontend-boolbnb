@@ -8,7 +8,6 @@ import App from './App.vue'
 import { router } from './router';
 // import Font Awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas);
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -20,9 +19,6 @@ dom.watch();
 
 // Import all of Bootstrap's JS
 
-// datapicker
-import Datepicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
 
 
 

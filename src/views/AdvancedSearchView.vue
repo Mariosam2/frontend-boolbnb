@@ -59,7 +59,7 @@ export default {
                     this.map = tt.map({
                         key: '45POhoazK93Ibg5oAGDMtKuyqLhjzUGo',
                         container: this.$refs.mapRef,
-                        style: '../src/assets/style-map/map-style.json',
+                        style: new URL('../assets/style-map/map-style.json', import.meta.url).href,
                         center: [store.lon, store.lat],
                         interactive: true,
                         zoom: 12,
@@ -343,7 +343,7 @@ export default {
                             mapHiddenEmptyAddress.classList.remove('hide')
 
                         }
-                        this.store.largeContainer = true;
+
 
                     } else {
                         if (!mapHiddenEmptyAddress.classList.contains('hide')) {
@@ -362,7 +362,7 @@ export default {
                         mapHiddenEmptyAddress.classList.add('hide')
 
                     }
-                    this.store.largeContainer = true;
+
                 }
 
 
