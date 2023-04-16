@@ -139,7 +139,7 @@ export default {
             try {
 
 
-                axios.get('http://127.0.0.1:8000/api/search?address=' + store.address + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds)
+                axios.get('https://boolbnb-host.com/api/search?address=' + store.address + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds)
                     .then(response => {
                         console.log(response);
                         if (response.data.success) {
