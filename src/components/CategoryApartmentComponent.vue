@@ -24,6 +24,9 @@ export default {
         }
     },
     computed: {
+        debounceCall() {
+            return this.debounce(this.SubmitServices, 500);
+        },
         pageNumbers() {
             return this.pages;
         },
@@ -34,6 +37,21 @@ export default {
         }
     },
     methods: {
+        debounce(func, delay) {
+            try {
+                let timeout;
+                return () => {
+                    clearTimeout(timeout);
+                    this.loading = true;
+                    timeout = setTimeout(() => {
+                        func();
+                    }, delay);
+                };
+
+            } catch (error) {
+                console.log(error.message);
+            }
+        },
         previousPage() {
             // if (this.currentPage > 1) {
             //     this.currentPage--;
@@ -201,25 +219,7 @@ export default {
             //store.categories_back = []; // Rimuovi tutti gli elementi dall'array categories_back
             this.activeCategoryIndex = null
 
-            // Rimuovi la classe "active_category" da tutti gli elementi
-            axios.get(`https://boolbnb-host.com/api/apartments`)
-                .then(response => {
-                    store.results = response.data.results.data
-                    //this.apartments = response.data.results.data;
-                    // this.pages = Math.ceil(this.apartments.length / this.perPage);
-                    this.nextPageUrl = response.data.results.next_page_url;
-                    this.prevPageUrl = response.data.results.prev_page_url;
-                    this.pages = response.data.results.last_page;
-                    //console.log(response.data.results.last_page);
-                    console.log(this.currentPage);
-                    console.log(this.pages);
-                    this.loading = false;
-                })
-                .catch(error => {
-                    console.error(error)
-                    this.error = error.message;
-                    this.loading = false;
-                })
+            this.debounceCall();
         },
         search() {
             store.address = '';
@@ -261,9 +261,8 @@ export default {
                     this.categories.push(store.categories[i].id);
 
                     /*console.log(this.categories);
-                    console.log(this.map);
- */
-                    this.SubmitServices();
+                    console.log(this.map);*/
+                    this.debounceCall();
                     /* console.log('faccio la call api');
                     console.log(store.results); */
 
@@ -295,14 +294,14 @@ export default {
                         //console.log(resp);
                         // convertire km to metri prima di mandarli 
                         store.results = response.data.results.data;
-                        console.log(response.data.results.data);
+                        // console.log(response.data.results.data);
                         //console.log('faccio la call api');
                         this.nextPageUrl = response.data.results.next_page_url;
                         this.prevPageUrl = response.data.results.prev_page_url;
                         this.pages = response.data.results.last_page;
                         //console.log(response.data.results.last_page);
-                        console.log(this.currentPage);
-                        console.log(this.pages);
+                        //console.log(this.currentPage);
+                        //console.log(this.pages);
                         this.loading = false;
 
                     }).catch(err => {
@@ -375,8 +374,7 @@ export default {
                             <!-- Slides -->
                             <div class="swiper-slide text-center " v-for="category, i in store.categories"
                                 :key="category.id">
-                                <div class="category"
-                                    :class="[i === activeCategoryIndex ? 'active_category' : '', loading ? 'loading' : '']"
+                                <div class="category" :class="i === activeCategoryIndex ? 'active_category' : ''"
                                     @click.stop="PushCategory(i)" :id="'category-' + i">
                                     <img :src="getImagePath(`${category.img}.png`)" alt="">
                                     <div>
@@ -414,7 +412,7 @@ export default {
                     :apartment="apartment" />
 
 
-                <div class="ms_pagination">
+                <div class="ms_pagination" v-if="!loading">
                     <div @click="previousPage" v-if="prevPageUrl !== null"><i class="fa-solid fa-chevron-left"></i></div>
                     <div class="page-numbers" v-if="prevPageUrl !== null || nextPageUrl !== null">
                         <div v-for="pageNumber in pageNumbers" :key="pageNumber"
@@ -435,7 +433,7 @@ export default {
 
 
 .preloader_container {
-    min-height: 1000px;
+    min-height: 500px;
 }
 
 
@@ -450,9 +448,7 @@ export default {
 }
 
 
-.category.loading {
-    pointer-events: none;
-}
+
 
 .active_category {
     border-bottom: 2px solid $bb-primary;

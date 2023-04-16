@@ -41,26 +41,38 @@ export default {
         }
     },
     methods: {
-        addMarker() {
-            const tt = window.tt;
-            var location = [this.longitude, this.latitude];
-            var element = document.createElement("div")
-            element.id = "marker"
-            var marker = new tt.Marker({ element: element })
-                .setLngLat(location)
-                .addTo(this.map)
-        },
         getMap() {
-            const tt = window.tt;
-            this.map = tt.map({
-                key: 'FiLLCEGWt31cQ9ECIWAD6zYjczzeC6zn',
-                container: this.$refs.mapRef,
-                style: 'tomtom://vector/1/basic-light',
-                center: [this.longitude, this.latitude],
-                zoom: 7,
-            });
-            this.map.addControl(new tt.FullscreenControl());
-            this.map.addControl(new tt.NavigationControl());
+            try {
+                const tt = window.tt;
+                this.map = tt.map({
+                    key: '45POhoazK93Ibg5oAGDMtKuyqLhjzUGo',
+                    container: this.$refs.singleApartmentMapRef,
+                    style: '../src/assets/style-map/map-style.json',
+                    center: [parseFloat(this.longitude), parseFloat(this.latitude)],
+                    interactive: true,
+                    zoom: 7,
+                });
+                //console.log(this.map)
+                this.map.on('load', () => {
+
+                    var location = [parseFloat(this.longitude), parseFloat(this.latitude)];
+                    var element = document.createElement("div")
+                    element.id = "marker"
+                    new tt.Marker({ element: element })
+                        .setLngLat(location)
+                        .addTo(this.map)
+                    this.map.addControl(new tt.FullscreenControl());
+                    this.map.addControl(new tt.NavigationControl());
+                    this.map.resize();
+
+                })
+
+
+
+
+            } catch (error) {
+                console.error(error.message);
+            }
         },
         sendForm() {
             this.loading_form = true
@@ -135,10 +147,9 @@ export default {
                     this.apartment = response.data.results;
                     this.latitude = response.data.results.latitude;
                     this.longitude = response.data.results.longitude;
-                    this.loading = false;
                     this.apartment_id = this.apartment.id
                     this.getMap();
-                    this.addMarker();
+                    this.loading = false;
                     this.$nextTick(() => {
                         window.scrollTo(0, 0);
 
@@ -390,7 +401,7 @@ export default {
                                 <label for="" class="form-label">Messaggio*</label>
                                 <textarea rows="3" cols="50" name="body" id="body" class="form-control" placeholder=""
                                     aria-describedby="helpId" required v-model="body">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </textarea>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </textarea>
 
                                 <div class="alert alert-danger" role="alert" v-for="error in errors.body">
                                     {{ error }}
@@ -415,7 +426,7 @@ export default {
                     {{ apartment.address }}
                 </div>
                 <!-- Mappa -->
-                <div id='map' ref="mapRef"></div>
+                <div id='map' ref="singleApartmentMapRef"></div>
             </div>
         </div>
     </div>
