@@ -44,7 +44,7 @@ export default {
 
 
                             store.results = response.data.results;
-                            store.isSearchbarComponentLoaded = true;
+
 
 
 
@@ -54,6 +54,7 @@ export default {
                             }
 
                             store.loading = false;
+                            store.isSearchbarComponentLoaded = true;
 
                             const searchQuery = store.address;
                             const query = searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : '';
