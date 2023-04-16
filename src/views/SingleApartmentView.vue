@@ -47,7 +47,7 @@ export default {
                 this.map = tt.map({
                     key: '45POhoazK93Ibg5oAGDMtKuyqLhjzUGo',
                     container: this.$refs.singleApartmentMapRef,
-                    style: '../src/assets/style-map/map-style.json',
+                    style: new URL('../assets/style-map/map-style.json', import.meta.url).href,
                     center: [parseFloat(this.longitude), parseFloat(this.latitude)],
                     interactive: true,
                     zoom: 7,
@@ -401,7 +401,7 @@ export default {
                                 <label for="" class="form-label">Messaggio*</label>
                                 <textarea rows="3" cols="50" name="body" id="body" class="form-control" placeholder=""
                                     aria-describedby="helpId" required v-model="body">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </textarea>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </textarea>
 
                                 <div class="alert alert-danger" role="alert" v-for="error in errors.body">
                                     {{ error }}
