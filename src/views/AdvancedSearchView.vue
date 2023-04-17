@@ -432,9 +432,10 @@ export default {
 
         });
 
-        if (!('from' in this.$route.params)) {
-            this.debounceCall();
-        }
+
+        this.debounceCall();
+        store.isSearchbarComponentLoaded = true;
+
 
 
 

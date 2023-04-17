@@ -21,6 +21,7 @@ export default {
             date: null,
             maxGuests: 10,
             searchTerm: '',
+
         }
     },
     methods: {
@@ -37,47 +38,57 @@ export default {
         },
         search() {
             try {
-                axios.get('https://boolbnb-host.com/api/search?address=' + store.address + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds)
-                    .then(response => {
-                        console.log(response);
-                        if (response.data.success) {
+                if (this.store.searchBarHasBeenCalled) {
+                    axios.get('https://boolbnb-host.com/api/search?address=' + store.address + '&services=' + store.services_back + '&category=' + store.categories_back + '&radius=' + store.radius * 1000 + '&beds=' + store.beds)
+                        .then(response => {
+                            console.log(response);
+                            if (response.data.success) {
+
+                                store.results = response.data.results;
+
+                                if (response.data.poi !== null) {
+                                    store.lat = response.data.poi.lat;
+                                    store.lon = response.data.poi.lon;
+                                }
+
+                                store.loading = false;
+                                store.isSearchbarComponentLoaded = true;
 
 
-                            store.results = response.data.results;
+
+                                const searchQuery = store.address;
+                                const query = searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : '';
+                                this.$router.push({ name: 'search', path: '/search' + query, query: { q: searchQuery } });
 
 
 
+                            } else {
+                                store.results = [];
+                                store.loading = false;
+                                store.isSearchbarComponentLoaded = true;
 
-                            if (response.data.poi !== null) {
-                                store.lat = response.data.poi.lat;
-                                store.lon = response.data.poi.lon;
+
+
                             }
-
-                            store.loading = false;
-                            store.isSearchbarComponentLoaded = true;
-
-                            const searchQuery = store.address;
-                            const query = searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : '';
-                            this.$router.push({ name: 'search', path: '/search' + query, query: { q: searchQuery } });
+                        })
+                }
 
 
 
 
-                        } else {
-                            store.results = [];
-                            store.loading = false;
-                            store.isSearchbarComponentLoaded = true;
 
-
-                        }
-                    })
 
 
 
 
             } catch (error) {
                 console.error(error.message);
+                store.results = [];
+                store.loading = false;
+                store.isSearchbarComponentLoaded = true;
+
             }
+            this.store.searchBarHasBeenCalled = true;
 
         },
         setAddress(address) {
@@ -105,6 +116,7 @@ export default {
         }
     },
     mounted() {
+
         console.log(store.address, store.categories_back, store.services_back);
         const searchBoxWrapper = document.getElementById('searchBoxWrapper');
         const options = {
